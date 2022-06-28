@@ -24,7 +24,6 @@ else # when there IS a query vcf
     gunzip $reference_file_path
     reference_file_path=$(echo ${reference_file_path%.*})
     samtools faidx $reference_file_path
-    mv in/reference_file/*.fai .
 
     # Move all file paths to current directory
 	find ~/in -type f -name "*" -print0 | xargs -0 -I {} mv {} ./
@@ -38,10 +37,7 @@ else # when there IS a query vcf
 
     # set up docker to run sompy
     service docker start
-    gunzip $pkrusche_happy_docker
 
-    # remove the gz from the filename
-    pkrusche_happy_docker=$(echo ${pkrusche_happy_docker%.*})
     docker load -i $pkrusche_happy_docker
     pkrusche_happy_id=$(docker images --format="{{.ID}}")
 
