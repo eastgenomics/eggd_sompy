@@ -55,12 +55,6 @@
       "optional": false,
       "patterns": ["*.tar.gz"],
       "help": "compressed pkrusche happy docker image"
-    },
-    {
-      "name": "prefix",
-      "label": "Output prefix",
-      "class": "string",
-      "optional": false
     }
   ],
   "outputSpec": [
