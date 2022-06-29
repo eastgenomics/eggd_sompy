@@ -28,7 +28,7 @@ else # when there IS a query vcf
 	query_vcf=${query_vcf_path##*/}
     pkrusche_happy_docker=${pkrusche_happy_docker_path##*/}
 
-    prefix=$(basename $(basename ${truth_vcf%%_*}))
+    prefix=$(basename $(basename ${query_vcf%%_*}))
 
     # set up docker to run sompy
     service docker start
