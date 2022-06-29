@@ -38,7 +38,16 @@
       "class": "file",
       "optional": false,
       "patterns": ["*.fa", "*.fa.gz"],
-      "help": "Reference file"
+      "help": "Reference file",
+      "default": {"$dnanexus_link": "file-Fy4gjFj41zgGjKJ85FYYPX4q"}
+    },
+    {
+      "name": "reference_index_file",
+      "class": "file",
+      "optional": false,
+      "patterns": ["*.fa.fai"],
+      "help": "Reference file",
+      "default": {"$dnanexus_link": "file-FyFGvzQ41zgBq7xf4Gy9Q28g"}
     },
     {
       "name": "pkrusche_happy_docker",

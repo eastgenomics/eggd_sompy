@@ -14,16 +14,9 @@ else # when there IS a query vcf
     # Download inputs from DNAnexus in parallel, these will be downloaded to /home/dnanexus/in/
     dx-download-all-inputs --parallel
 
-    # samtools in htslib doesn't work as its missing a library, so
-    # will install the missing libraries from the downloaded deb files
-    # (so as to not use internet)
-    sudo dpkg -i libtinfo5_6.2-0ubuntu2_amd64.deb
-    sudo dpkg -i libncurses5_6.2-0ubuntu2_amd64.deb
-
-    # index reference file
+    # unzip reference file
     gunzip $reference_file_path
     reference_file_path=$(echo ${reference_file_path%.*})
-    samtools faidx $reference_file_path
 
     # Move all file paths to current directory
 	find ~/in -type f -name "*" -print0 | xargs -0 -I {} mv {} ./
