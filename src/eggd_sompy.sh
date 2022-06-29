@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e -x -o pipefail
 
+main() {
 #Make directories to hold outputs
 mkdir /home/dnanexus/out
 mkdir /home/dnanexus/out/output_csv
@@ -63,3 +64,4 @@ fi
 #Upload outputs (from /home/dnanexus/out) to DNAnexus
 dx-upload-all-outputs --parallel
 
+}
