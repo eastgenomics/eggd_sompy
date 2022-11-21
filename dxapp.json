@@ -12,7 +12,7 @@
   ],
   "inputSpec": [
     {
-      "name": "query_vcf_name",
+      "name": "query_vcf_filename",
       "class": "string",
       "optional": true,
       "help": "The query sample name to run sompy on. If not provided, no outputs are generated"
@@ -27,7 +27,7 @@
     {
       "name": "query_vcf",
       "class": "file",
-      "optional": true,
+      "optional": false,
       "patterns": ["*.vcf", "*.vcf.gz"],
       "help": "Query VCF from in-house pipeline"
     },
