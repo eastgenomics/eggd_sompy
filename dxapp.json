@@ -12,7 +12,7 @@
   ],
   "inputSpec": [
     {
-      "name": "query_vcf_filename",
+      "name": "query_vcf_string",
       "class": "string",
       "optional": true,
       "help": "The query sample name to run sompy on. If not provided, no outputs are generated"
