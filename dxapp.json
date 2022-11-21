@@ -74,13 +74,15 @@
       "name": "output_csv",
       "class": "file",
       "patterns": ["*"],
-      "help": ""
+      "help": "",
+      "optional": true
     },
     {
       "name": "output_features_csv",
       "class": "file",
       "patterns": ["*"],
-      "help": ""
+      "help": "",
+      "optional": true
     }
   ],
   "runSpec": {
