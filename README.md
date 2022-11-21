@@ -14,6 +14,7 @@ The program som.py is based off hap.py by Illumina https://github.com/Illumina/h
 - Capture bed
 - Reference genome (.fa.gz)
 - Hap.py docker
+- Query VCF filename (string)
 
 ![Image of workflow](img/sompy_workflow.jpg)
 

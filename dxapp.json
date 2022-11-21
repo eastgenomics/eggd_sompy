@@ -2,8 +2,8 @@
   "name": "eggd_sompy",
   "title": "eggd_sompy",
   "summary": "Somatic Variant Benchmarking Tool",
-  "dxapi": "1.0.0",
-  "version": "1.0.0",
+  "dxapi": "1.0.1",
+  "version": "1.0.1",
   "authorizedUsers": [
     "org-emee_1"
   ],
@@ -11,6 +11,12 @@
     "org-emee_1"
   ],
   "inputSpec": [
+    {
+      "name": "query_vcf_string",
+      "class": "string",
+      "optional": true,
+      "help": "The query sample name to run sompy on. If not provided, no outputs are generated"
+    },
     {
       "name": "truth_vcf",
       "class": "file",
@@ -68,13 +74,15 @@
       "name": "output_csv",
       "class": "file",
       "patterns": ["*"],
-      "help": ""
+      "help": "",
+      "optional": true
     },
     {
       "name": "output_features_csv",
       "class": "file",
       "patterns": ["*"],
-      "help": ""
+      "help": "",
+      "optional": true
     }
   ],
   "runSpec": {
