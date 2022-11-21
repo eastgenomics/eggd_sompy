@@ -12,6 +12,12 @@
   ],
   "inputSpec": [
     {
+      "name": "query_vcf_name",
+      "class": "string",
+      "optional": true,
+      "help": "The query sample name to run sompy on. If not provided, no outputs are generated"
+    },
+    {
       "name": "truth_vcf",
       "class": "file",
       "optional": false,
