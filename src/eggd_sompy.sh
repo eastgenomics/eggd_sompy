@@ -3,18 +3,13 @@ set -e -x -o pipefail
 
 main() {
 
-    if [ -z "$query_vcf" ] | [ -z "$query_vcf_string" ]  ; then
-        # when there's no query vcf or no query name provided, exit the app
-        # and dont output anything
-        echo "Query VCF and query VCF filename inputs are missing"
-    elif [ "$query_vcf" ]  && ["$query_vcf_string"]; then
+    if [ "$query_vcf" ] && [ "$query_vcf_string" ] ; then
         # if query vcf file name is provided, check the name matches the fielename
         # given into the app. We will compare the first field of the samplenames
-        query_vcf_sampleID=${query_vcf_name%%-*}
-        query_vcf_string_sampleID=${query_vcf_string_name%%-*}
-        echo $query_vcf_sampleID
-        echo $query_vcf_string_sampleID
-        if [ "$query_vcf_sampleID" == "$query_vcf_string_sampleID" ]; then
+        echo "Query VCF and query VCF filename inputs are inputted"
+
+        # check the query VCF and query VCF string filename match
+        if [ "${query_vcf_name%%-*}" == "${query_vcf_string%%-*}" ]; then
             echo "Query VCF and query VCF filename inputs are the same"
             # when there IS a query vcf
             # Download inputs from DNAnexus in parallel, these will be downloaded to /home/dnanexus/in/
@@ -75,7 +70,6 @@ main() {
             echo "Query VCF and query VCF filename inputs are NOT the same"
         fi
     else
-        echo "Query VCF and query VCF filename need to both be inputted"
+        echo "Either Query VCF and query VCF filename inputs are missing"
     fi
-
 }
