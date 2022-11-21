@@ -27,7 +27,7 @@
     {
       "name": "query_vcf",
       "class": "file",
-      "optional": false,
+      "optional": true,
       "patterns": ["*.vcf", "*.vcf.gz"],
       "help": "Query VCF from in-house pipeline"
     },
