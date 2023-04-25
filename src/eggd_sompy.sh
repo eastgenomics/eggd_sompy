@@ -9,7 +9,7 @@ main() {
         echo "Query VCF and query VCF filename inputs are inputted"
 
         # check the query VCF and query VCF string filename match
-        if [[ "${query_vcf_name}" =~ "${query_vcf_string%%-*}"|-[0-9]+Q[0-9]+- ]]; then
+        if [[ "${query_vcf_name}" =~ "${query_vcf_string}" ]]; then
             echo "Query VCF and query VCF filename inputs are the same"
             # when there IS a query vcf
             # Download inputs from DNAnexus in parallel, these will be downloaded to /home/dnanexus/in/
