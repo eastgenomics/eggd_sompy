@@ -2,8 +2,8 @@
   "name": "eggd_sompy",
   "title": "eggd_sompy",
   "summary": "Somatic Variant Benchmarking Tool",
-  "dxapi": "1.0.1",
-  "version": "1.0.1",
+  "dxapi": "1.0.2",
+  "version": "1.0.2",
   "authorizedUsers": [
     "org-emee_1"
   ],
@@ -15,7 +15,7 @@
       "name": "query_vcf_string",
       "class": "string",
       "optional": true,
-      "help": "The query sample name to run sompy on. If not provided, no outputs are generated"
+      "help": "The query sample name to run sompy on, can be in regex match format e.g Oncospan|-[0-9]+Q[0-9]+- . If not provided, no outputs are generated"
     },
     {
       "name": "truth_vcf",
