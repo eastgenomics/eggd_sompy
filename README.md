@@ -22,6 +22,3 @@ The program som.py is based off hap.py by Illumina https://github.com/Illumina/h
 
 - sample.stats.csv (contains the overall metrics for SNPs and Indels)
 - sample.feature.csv (contains the variants that are tp,fp and fn)
-
-## What are the limitations of this app
-- Requires "chr" to be present
