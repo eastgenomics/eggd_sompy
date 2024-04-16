@@ -52,6 +52,7 @@ main() {
                 -f /data/$truth_high_confidence_bed \
                 -R /data/$panel_bed \
                 --count-unk --include-nonpass --feature-table generic \
+                --no-fixchr-truth --no-fixchr-query \
                 -o data/"$prefix" "
 
             eval $command
