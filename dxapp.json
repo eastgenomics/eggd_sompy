@@ -3,7 +3,7 @@
   "title": "eggd_sompy",
   "summary": "Somatic Variant Benchmarking Tool",
   "dxapi": "1.0.3",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "authorizedUsers": [
     "org-emee_1"
   ],
@@ -50,16 +50,14 @@
       "class": "file",
       "optional": false,
       "patterns": ["*.fa", "*.fa.gz"],
-      "help": "Reference file",
-      "default": {"$dnanexus_link": "file-Fy4gjFj41zgGjKJ85FYYPX4q"}
+      "help": "Reference file"
     },
     {
       "name": "reference_index_file",
       "class": "file",
       "optional": false,
       "patterns": ["*.fa.fai"],
-      "help": "Reference file",
-      "default": {"$dnanexus_link": "file-FyFGvzQ41zgBq7xf4Gy9Q28g"}
+      "help": "Reference file"
     },
     {
       "name": "pkrusche_happy_docker",
