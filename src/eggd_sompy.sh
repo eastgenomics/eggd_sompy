@@ -31,12 +31,35 @@ main() {
 
             prefix=$(basename $(basename ${query_vcf%%_*}))
 
+            # normalise query VCF
+            query_vcf_name=$(basename ${query_vcf} .vcf.gz)
+            normalised_query_vcf="${query_vcf_name}.normalized.vcf.gz"
+            bcftools norm \
+                -Oz \
+                -W=tbi \
+                -f ${reference_file} \
+                -m -any \
+                --keep-sum AD \
+                -o "${normalised_query_vcf}" \
+                "${query_vcf}"
+
+            # normalise truth VCF
+            truth_vcf_name=$(basename ${truth_vcf} .vcf.gz)
+            normalised_truth_vcf="${truth_vcf_name}.normalized.vcf.gz"
+            bcftools norm \
+                -Oz \
+                -W=tbi \
+                -f ${reference_file} \
+                -m -any \
+                --keep-sum AD \
+                -o "${normalised_truth_vcf}" \
+                "${truth_vcf}"
+
             # set up docker to run sompy
             service docker start
 
             docker load -i $pkrusche_happy_docker
             pkrusche_happy_id=$(docker images --format="{{.ID}}")
-
 
             # Run sompy with truth VCF, query VCF with the referene genome.
             # Use the truth and capture panel bed to only calculate recall/precision
@@ -47,7 +70,7 @@ main() {
             # variants that are tp,fp and fn with the parameter --feature-table generic.
             command="time docker run -v /home/dnanexus/:/data \
                 $pkrusche_happy_id /opt/hap.py/bin/som.py \
-                /data/$truth_vcf /data/$query_vcf \
+                /data/$normalised_truth_vcf /data/$normalised_query_vcf \
                 -r /data/$reference_file \
                 -f /data/$truth_high_confidence_bed \
                 -R /data/$panel_bed \
