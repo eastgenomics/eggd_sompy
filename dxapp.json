@@ -3,7 +3,7 @@
   "title": "eggd_sompy",
   "summary": "Somatic Variant Benchmarking Tool",
   "dxapi": "1.0.3",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "authorizedUsers": [
     "org-emee_1"
   ],
@@ -93,7 +93,15 @@
     "file": "src/eggd_sompy.sh",
     "distribution": "Ubuntu",
     "release": "20.04",
-    "version": "0"
+    "version": "0",
+    "assetDepends": [
+      {
+        "name": "htslib_suite_asset",
+        "project": "project-Fkb6Gkj433GVVvj73J7x8KbV",
+        "folder": "/app_assets/htslib/htslib_v1.22.0",
+        "version": "1.22.0"
+      }
+    ]
   },
   "regionalOptions": {
     "aws:eu-central-1": {
