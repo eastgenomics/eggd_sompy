@@ -5,7 +5,7 @@
   "dxapi": "1.0.3",
   "version": "1.0.5",
   "details": { 
-      "whatsNew": "## Changelog\n* Normalisation added to truth and query VCFs"
+      "whatsNew": "## Changelog\n* v1.0.5: Normalisation step added to truth and query VCFs using bcftools"
   },
   "authorizedUsers": [
     "org-emee_1"
