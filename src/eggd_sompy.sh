@@ -32,7 +32,7 @@ main() {
             prefix=$(basename $(basename ${query_vcf%%_*}))
 
             # normalise query VCF
-            query_vcf_name=$(basename ${query_vcf} .vcf.gz)
+            query_vcf_name=$(sed -E 's/.vcf(.gz)?//g' <<< $(basename $query_vcf))
             normalised_query_vcf="${query_vcf_name}.normalized.vcf.gz"
             bcftools norm \
                 -Oz \
@@ -44,7 +44,7 @@ main() {
                 "${query_vcf}"
 
             # normalise truth VCF
-            truth_vcf_name=$(basename ${truth_vcf} .vcf.gz)
+            truth_vcf_name=$(sed -E 's/.vcf(.gz)?//g' <<< $(basename $truth_vcf))
             normalised_truth_vcf="${truth_vcf_name}.normalized.vcf.gz"
             bcftools norm \
                 -Oz \
