@@ -3,7 +3,10 @@
   "title": "eggd_sompy",
   "summary": "Somatic Variant Benchmarking Tool",
   "dxapi": "1.0.3",
-  "version": "1.0.4",
+  "version": "1.0.5",
+  "details": { 
+      "whatsNew": "## Changelog\n* v1.0.5: Normalisation step added to truth and query VCFs using bcftools"
+  },
   "authorizedUsers": [
     "org-emee_1"
   ],
@@ -93,7 +96,12 @@
     "file": "src/eggd_sompy.sh",
     "distribution": "Ubuntu",
     "release": "20.04",
-    "version": "0"
+    "version": "0",
+    "assetDepends": [
+      {
+          "id": "record-J1YBvy049yKpP7kk1j4ggqxZ"
+      }
+    ]
   },
   "regionalOptions": {
     "aws:eu-central-1": {
