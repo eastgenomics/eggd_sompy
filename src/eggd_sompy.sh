@@ -32,6 +32,8 @@ main() {
             prefix=$(basename $(basename ${query_vcf%%_*}))
 
             # normalise query VCF
+            ## indexing fixes an issue seen with some inputs: "Contig '1' is not defined in the header. (Quick workaround: index the file with tabix.)"
+            tabix $query_vcf
             query_vcf_name=$(sed -E 's/\.vcf(\.gz)?//g' <<< $(basename $query_vcf))
             normalised_query_vcf="${query_vcf_name}.normalized.vcf.gz"
             bcftools norm \
@@ -39,11 +41,12 @@ main() {
                 -W=tbi \
                 -f ${reference_file} \
                 -m -any \
-                --keep-sum AD \
                 -o "${normalised_query_vcf}" \
                 "${query_vcf}"
 
             # normalise truth VCF
+            ## indexing to fix bcftools not finding contig refs in header for some VCFs
+            tabix $truth_vcf
             truth_vcf_name=$(sed -E 's/\.vcf(\.gz)?//g' <<< $(basename $truth_vcf))
             normalised_truth_vcf="${truth_vcf_name}.normalized.vcf.gz"
             bcftools norm \
@@ -51,7 +54,6 @@ main() {
                 -W=tbi \
                 -f ${reference_file} \
                 -m -any \
-                --keep-sum AD \
                 -o "${normalised_truth_vcf}" \
                 "${truth_vcf}"
 
