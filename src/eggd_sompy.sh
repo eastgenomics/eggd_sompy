@@ -9,13 +9,14 @@ bgzip_vcf() {
             gunzip $1
             vcf_to_bgzip=${2%.*}
         else
-            vcf_to_bgzip=${2}
+            vcf_to_bgzip=$2
         fi
 
-        bgzip -c $vcf_to_bgzip > $2.bgzip
+        bgzip -c $vcf_to_bgzip > $vcf_to_bgzip.bgzip
+        echo $vcf_to_bgzip.bgzip
+    else
+        echo $2
     fi
-
-    echo $2.bgzip
 }
 
 main() {
@@ -99,6 +100,7 @@ main() {
                 -R /data/$panel_bed \
                 --count-unk --include-nonpass --feature-table generic \
                 --no-fixchr-truth --no-fixchr-query \
+                --af-truth --af-query \
                 -o data/"$prefix" "
 
             eval $command
