@@ -100,8 +100,7 @@ main() {
                 -R /data/$panel_bed \
                 --count-unk --include-nonpass --feature-table generic \
                 --no-fixchr-truth --no-fixchr-query \
-                --af-truth --af-query \
-                -o data/"$prefix" "
+                -o data/"$prefix" $additional_options"
 
             eval $command
 
