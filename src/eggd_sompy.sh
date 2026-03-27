@@ -1,6 +1,23 @@
 #!/bin/bash
 set -e -x -o pipefail
 
+bgzip_vcf() {
+    vcf_type=$(htsfile $1)
+
+    if [[ $vcf_type != *"BGZF"* ]]; then
+        if [[ $2 == *".gz" ]]; then
+            gunzip $1
+            vcf_to_bgzip=${2%.*}
+        else
+            vcf_to_bgzip=${2}
+        fi
+
+        bgzip -c $vcf_to_bgzip > $2.bgzip
+    fi
+
+    echo $2.bgzip
+}
+
 main() {
 
     if [ "$query_vcf" ] && [ "$query_vcf_string" ] ; then
@@ -31,10 +48,12 @@ main() {
 
             prefix=$(basename $(basename ${query_vcf%%_*}))
 
+            bgzipped_query_vcf=$(bgzip_vcf $query_vcf $query_vcf_name)
+
             # normalise query VCF
             ## indexing fixes an issue seen with some inputs: "Contig '1' is not defined in the header. (Quick workaround: index the file with tabix.)"
-            tabix $query_vcf
-            query_vcf_name=$(sed -E 's/\.vcf(\.gz)?//g' <<< $(basename $query_vcf))
+            tabix $bgzipped_query_vcf
+            query_vcf_name=$(sed -E 's/\.vcf(\.gz)?//g' <<< $(basename $bgzipped_query_vcf))
             normalised_query_vcf="${query_vcf_name}.normalized.vcf.gz"
             bcftools norm \
                 -Oz \
@@ -42,12 +61,14 @@ main() {
                 -f ${reference_file} \
                 -m -any \
                 -o "${normalised_query_vcf}" \
-                "${query_vcf}"
+                "${bgzipped_query_vcf}"
+
+            bgzipped_truth_vcf=$(bgzip_vcf $truth_vcf $truth_vcf_name)
 
             # normalise truth VCF
             ## indexing to fix bcftools not finding contig refs in header for some VCFs
-            tabix $truth_vcf
-            truth_vcf_name=$(sed -E 's/\.vcf(\.gz)?//g' <<< $(basename $truth_vcf))
+            tabix $bgzipped_truth_vcf
+            truth_vcf_name=$(sed -E 's/\.vcf(\.gz)?//g' <<< $(basename $bgzipped_truth_vcf))
             normalised_truth_vcf="${truth_vcf_name}.normalized.vcf.gz"
             bcftools norm \
                 -Oz \
@@ -55,7 +76,7 @@ main() {
                 -f ${reference_file} \
                 -m -any \
                 -o "${normalised_truth_vcf}" \
-                "${truth_vcf}"
+                "${bgzipped_truth_vcf}"
 
             # set up docker to run sompy
             service docker start
