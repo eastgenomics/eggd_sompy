@@ -4,7 +4,9 @@ set -e -x -o pipefail
 bgzip_vcf() {
     vcf_type=$(htsfile $1)
 
+    # check if the file is bgzipped
     if [[ $vcf_type != *"BGZF"* ]]; then
+        # if it's gzipped gunzip it first
         if [[ $2 == *".gz" ]]; then
             gunzip $1
             vcf_to_bgzip=${2%.*}
