@@ -5,7 +5,10 @@
   "dxapi": "1.0.3",
   "version": "1.0.6",
   "details": {
-    "whatsNew": "## Changelog\n* v1.0.6: BGzipping of query and truth VCFs to avoid errors at the tabix index steps"
+    "whatsNew": {
+      "v1.0.5": "Normalisation step added to truth and query VCFs using bcftools",
+      "v1.0.6": "BGzipping of query and truth VCFs to avoid errors at the tabix index steps",
+    }
   },
   "authorizedUsers": [
     "org-emee_1"
