@@ -87,6 +87,11 @@ main() {
             docker load -i $pkrusche_happy_docker
             pkrusche_happy_id=$(docker images --format="{{.ID}}")
 
+            if [[ "${additional_options}" == *"&"* || "${additional_options}" == *"|"* ]]; then
+                echo "The following symbols are not allowed in the additional options argument: '&' '|'"
+                exit -1
+            fi
+
             # Run sompy with truth VCF, query VCF with the referene genome.
             # Use the truth and capture panel bed to only calculate recall/precision
             # those regoins. For anything outside those regions, count as unknown
@@ -118,8 +123,10 @@ main() {
             dx-upload-all-outputs --parallel
         else
             echo "Query VCF and query VCF filename inputs are NOT the same"
+            exit -1
         fi
     else
         echo "Either Query VCF and query VCF filename inputs are missing"
+        exit -1
     fi
 }
