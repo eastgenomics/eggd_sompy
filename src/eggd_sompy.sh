@@ -87,9 +87,11 @@ main() {
             docker load -i $pkrusche_happy_docker
             pkrusche_happy_id=$(docker images --format="{{.ID}}")
 
-            if [[ "${additional_options}" == *"&"* || "${additional_options}" == *"|"* ]]; then
-                echo "The following symbols are not allowed in the additional options argument: '&' '|'"
-                exit -1
+            if [[ -n "${additional_options:-}" ]]; then
+                if [[ "$additional_options" =~ [^A-Za-z0-9_./=,:[:space:]-] ]]; then
+                    echo "ERROR: unsupported characters in additional_options" >&2
+                    exit 1
+                fi
             fi
 
             # Run sompy with truth VCF, query VCF with the referene genome.
