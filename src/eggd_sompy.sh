@@ -125,10 +125,10 @@ main() {
             dx-upload-all-outputs --parallel
         else
             echo "Query VCF and query VCF filename inputs are NOT the same"
-            exit -1
+            exit 1
         fi
     else
         echo "Either Query VCF and query VCF filename inputs are missing"
-        exit -1
+        exit 1
     fi
 }
