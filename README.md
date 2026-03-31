@@ -1,10 +1,11 @@
 # eggd_sompy (DNAnexus Platform App)
 
 ## What does this app do?
+
 Somatic Variant Benchmarking Tool. Calculates recall, precision,
 true positives (tp), false postive (fp), false negative (fn) between truth and query VCF for somatic samples.
 
-The program som.py is based off hap.py by Illumina https://github.com/Illumina/hap.py/blob/master/doc/sompy.md
+The program som.py is based off hap.py by Illumina <https://github.com/Illumina/hap.py/blob/master/doc/sompy.md>
 
 ## What are the inputs?
 
@@ -14,7 +15,8 @@ The program som.py is based off hap.py by Illumina https://github.com/Illumina/h
 - Capture bed
 - Reference genome (.fa.gz)
 - Hap.py docker
-- Query VCF filename (string)
+- Query VCF filename - required (string)
+- Additional options for som.py - optional (string)
 
 ![Image of workflow](img/sompy_workflow.jpg)
 

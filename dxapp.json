@@ -3,14 +3,17 @@
   "title": "eggd_sompy",
   "summary": "Somatic Variant Benchmarking Tool",
   "dxapi": "1.0.3",
-  "version": "1.0.5",
-  "details": { 
-      "whatsNew": "## Changelog\n* v1.0.5: Normalisation step added to truth and query VCFs using bcftools"
+  "version": "1.0.6",
+  "details": {
+    "whatsNew": {
+      "v1.0.5": "Normalisation step added to truth and query VCFs using bcftools",
+      "v1.0.6": "BGzipping of query and truth VCFs to avoid errors at the tabix index steps"
+    }
   },
   "authorizedUsers": [
     "org-emee_1"
   ],
-  "developers":[
+  "developers": [
     "org-emee_1"
   ],
   "inputSpec": [
@@ -24,64 +27,90 @@
       "name": "truth_vcf",
       "class": "file",
       "optional": false,
-      "patterns": ["*.vcf", "*.vcf.gz"],
+      "patterns": [
+        "*.vcf",
+        "*.vcf.gz"
+      ],
       "help": "Truth VCF from Horizon"
     },
     {
       "name": "query_vcf",
       "class": "file",
       "optional": false,
-      "patterns": ["*.vcf", "*.vcf.gz"],
+      "patterns": [
+        "*.vcf",
+        "*.vcf.gz"
+      ],
       "help": "Query VCF from in-house pipeline"
     },
     {
       "name": "panel_bed",
       "class": "file",
       "optional": false,
-      "patterns": ["*.bed"],
+      "patterns": [
+        "*.bed"
+      ],
       "help": "Bed file"
     },
     {
       "name": "truth_high_confidence_bed",
       "class": "file",
       "optional": false,
-      "patterns": ["*.bed"],
+      "patterns": [
+        "*.bed"
+      ],
       "help": "Truth high confidence file for the truth VCF"
     },
     {
       "name": "reference_file",
       "class": "file",
       "optional": false,
-      "patterns": ["*.fa", "*.fa.gz"],
+      "patterns": [
+        "*.fa.gz"
+      ],
       "help": "Reference file"
     },
     {
       "name": "reference_index_file",
       "class": "file",
       "optional": false,
-      "patterns": ["*.fa.fai"],
+      "patterns": [
+        "*.fa.fai"
+      ],
       "help": "Reference file"
     },
     {
       "name": "pkrusche_happy_docker",
       "class": "file",
       "optional": false,
-      "patterns": ["*.tar.gz"],
+      "patterns": [
+        "*.tar.gz"
+      ],
       "help": "compressed pkrusche happy docker image"
+    },
+    {
+      "name": "additional_options",
+      "class": "string",
+      "optional": true,
+      "help": "String to pass other options to som.py. List of options: https://github.com/Illumina/hap.py/blob/master/doc/sompy.md#all-options"
     }
   ],
   "outputSpec": [
     {
       "name": "output_csv",
       "class": "file",
-      "patterns": ["*"],
+      "patterns": [
+        "*"
+      ],
       "help": "",
       "optional": true
     },
     {
       "name": "output_features_csv",
       "class": "file",
-      "patterns": ["*"],
+      "patterns": [
+        "*"
+      ],
       "help": "",
       "optional": true
     }
@@ -99,7 +128,7 @@
     "version": "0",
     "assetDepends": [
       {
-          "id": "record-J1YBvy049yKpP7kk1j4ggqxZ"
+        "id": "record-J1YBvy049yKpP7kk1j4ggqxZ"
       }
     ]
   },
